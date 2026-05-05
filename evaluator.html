@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Evaluator PD - HAOS România</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <span class="badge">Pagina evaluatorului</span>
+  <h1>Verificare Test Admitere PD — HAOS România</h1>
+  <p class="subtitle">Deschide linkul primit de la candidat. Răspunsurile se vor încărca automat în pagina de evaluare.</p>
+  <div class="toolbar">
+    <button type="button" onclick="loadFromHash()">Reîncarcă din link</button>
+    <button type="button" class="secondary" onclick="toggleRaw()">Arată / ascunde date brute</button>
+    <button type="button" class="success" onclick="saveEvaluation()">Salvează evaluarea local</button>
+  </div>
+</header>
+
+<nav>
+  <a href="#import">Import</a>
+  <a href="#summary">Rezumat</a>
+  <a href="#answers">Răspunsuri</a>
+  <a href="#keys">Cheie grilă</a>
+  <a href="#live">Probe live</a>
+  <a href="#decision">Punctaj</a>
+</nav>
+
+<main>
+  <section id="import">
+    <div class="section-title"><div><h2>1. Import test candidat</h2><p class="hint">Dacă pagina nu a preluat automat datele, lipește linkul/codul aici.</p></div></div>
+    <textarea id="manualPayload" class="copy-area" placeholder="Lipește aici linkul de evaluator sau codul după #r=..."></textarea>
+    <div class="toolbar">
+      <button type="button" onclick="loadManual()">Importă manual</button>
+    </div>
+    <div id="loadStatus" class="note warning">Nu a fost încă încărcat niciun test.</div>
+    <pre id="rawBox" class="result-box hidden"></pre>
+  </section>
+
+  <section id="summary">
+    <div class="section-title"><div><h2>2. Rezumat candidat</h2><p class="hint">Datele principale ale candidatului.</p></div></div>
+    <div id="summaryBox" class="result-box">Nu există date încărcate.</div>
+  </section>
+
+  <section id="answers">
+    <div class="section-title"><div><h2>3. Răspunsurile candidatului</h2><p class="hint">Evaluatorul verifică maturitatea, seriozitatea, regulamentul și claritatea răspunsurilor.</p></div></div>
+    <div id="answersBox">Nu există date încărcate.</div>
+  </section>
+
+  <section id="keys">
+    <div class="section-title"><div><h2>4. Cheie verificare grilă + criterii</h2><p class="hint">Această secțiune este doar pentru evaluator. Candidatul nu o primește.</p></div></div>
+
+    <h3>Răspunsuri corecte grilă</h3>
+    <table>
+      <thead><tr><th>Întrebare</th><th class="center">Corect</th><th class="center">Candidat</th><th class="center">Rezultat</th></tr></thead>
+      <tbody id="quizCheckRows"></tbody>
+    </table>
+
+    <h3>Criterii comportamentale urmărite</h3>
+    <div class="checks">
+      <label class="check-row"><input type="checkbox"> Rămâne calm când este provocat.</label>
+      <label class="check-row"><input type="checkbox"> Nu favorizează prieteni, mafii sau persoane cunoscute.</label>
+      <label class="check-row"><input type="checkbox"> Nu face abuz de funcție.</label>
+      <label class="check-row"><input type="checkbox"> Știe diferența dintre IC și OOC.</label>
+      <label class="check-row"><input type="checkbox"> Scrie rapoarte clare și logice.</label>
+      <label class="check-row"><input type="checkbox"> Acceptă feedback fără ironie sau agresivitate.</label>
+    </div>
+
+    <h3>Răspunsuri/idei așteptate la descifrare</h3>
+    <div class="answer-key">2. Primul la locul incidentului: suspectul.</div>
+    <div class="answer-key">5. Mașina care a plecat prima: mașina neagră.</div>
+    <div class="answer-key">6. Candidatul trebuie să explice că polițistul nu trebuie să răspundă toxic OOC, chiar dacă a fost jignit IC.</div>
+  </section>
+
+  <section id="live">
+    <div class="section-title"><div><h2>5. Probe live pentru evaluator</h2><p class="hint">Acestea se completează după testul scris.</p></div></div>
+
+    <h3>Agilitate — traseu pe jos</h3>
+    <table>
+      <thead><tr><th>Criteriu</th><th class="center">Max</th><th class="center">Punctaj</th></tr></thead>
+      <tbody>
+        <tr><td>Respectă traseul</td><td class="center">10</td><td class="center"><input type="number" min="0" max="10" class="live-score"></td></tr>
+        <tr><td>Nu trișează / nu scurtează</td><td class="center">10</td><td class="center"><input type="number" min="0" max="10" class="live-score"></td></tr>
+        <tr><td>Rămâne calm</td><td class="center">10</td><td class="center"><input type="number" min="0" max="10" class="live-score"></td></tr>
+        <tr><td>Ascultă indicațiile</td><td class="center">10</td><td class="center"><input type="number" min="0" max="10" class="live-score"></td></tr>
+      </tbody>
+    </table>
+
+    <h3>Agilitate — traseu auto</h3>
+    <table>
+      <thead><tr><th>Criteriu</th><th class="center">Max</th><th class="center">Punctaj</th></tr></thead>
+      <tbody>
+        <tr><td>Controlul mașinii</td><td class="center">10</td><td class="center"><input type="number" min="0" max="10" class="live-score"></td></tr>
+        <tr><td>Nu lovește inutil obstacole</td><td class="center">10</td><td class="center"><input type="number" min="0" max="10" class="live-score"></td></tr>
+        <tr><td>Respectă indicațiile testerului</td><td class="center">10</td><td class="center"><input type="number" min="0" max="10" class="live-score"></td></tr>
+        <tr><td>Nu conduce haotic</td><td class="center">10</td><td class="center"><input type="number" min="0" max="10" class="live-score"></td></tr>
+      </tbody>
+    </table>
+
+    <h3>Comunicare sub presiune</h3>
+    <table>
+      <thead><tr><th>Criteriu</th><th class="center">Max</th><th class="center">Punctaj</th></tr></thead>
+      <tbody>
+        <tr><td>Vorbește clar</td><td class="center">5</td><td class="center"><input type="number" min="0" max="5" class="live-score"></td></tr>
+        <tr><td>Spune locația</td><td class="center">5</td><td class="center"><input type="number" min="0" max="5" class="live-score"></td></tr>
+        <tr><td>Spune ce se întâmplă</td><td class="center">5</td><td class="center"><input type="number" min="0" max="5" class="live-score"></td></tr>
+        <tr><td>Nu țipă / nu se panichează</td><td class="center">5</td><td class="center"><input type="number" min="0" max="5" class="live-score"></td></tr>
+      </tbody>
+    </table>
+
+    <div class="field"><label>Observații live</label><textarea id="liveNotes"></textarea></div>
+  </section>
+
+  <section id="decision">
+    <div class="section-title"><div><h2>6. Punctaj și decizie finală</h2><p class="hint">Punctaj total recomandat: 100 puncte.</p></div></div>
+
+    <table>
+      <thead><tr><th>Secțiune</th><th class="center">Maxim</th><th class="center">Punctaj</th></tr></thead>
+      <tbody>
+        <tr><td>Date OOC + IC + motivație</td><td class="center">15</td><td class="center"><input class="score" type="number" min="0" max="15" data-max="15"></td></tr>
+        <tr><td>Test comportamental / maturitate</td><td class="center">20</td><td class="center"><input class="score" type="number" min="0" max="20" data-max="20"></td></tr>
+        <tr><td>Regulament HAOS + RP</td><td class="center">20</td><td class="center"><input id="rulesScore" class="score" type="number" min="0" max="20" data-max="20"></td></tr>
+        <tr><td>Situații ca polițist</td><td class="center">20</td><td class="center"><input class="score" type="number" min="0" max="20" data-max="20"></td></tr>
+        <tr><td>Descifrare rapidă</td><td class="center">10</td><td class="center"><input class="score" type="number" min="0" max="10" data-max="10"></td></tr>
+        <tr><td>Probe live + comportament interviu</td><td class="center">15</td><td class="center"><input class="score" type="number" min="0" max="15" data-max="15"></td></tr>
+        <tr><th>Total</th><th class="center">100</th><th class="center"><span id="totalTable">0</span></th></tr>
+      </tbody>
+    </table>
+
+    <h3>Motive de respingere directă</h3>
+    <div class="checks">
+      <label class="check-row"><input type="checkbox"> A mințit despre vârstă, ore sau sancțiuni.</label>
+      <label class="check-row"><input type="checkbox"> Nu are minimul de ore cerut.</label>
+      <label class="check-row"><input type="checkbox"> Are comportament toxic.</label>
+      <label class="check-row"><input type="checkbox"> Spune că vrea PD pentru putere, răzbunare sau abuz.</label>
+      <label class="check-row"><input type="checkbox"> Nu știe diferența dintre IC și OOC.</label>
+      <label class="check-row"><input type="checkbox"> Nu știe reguli de bază: mixing, meta gaming, power gaming, no fear sau cop bait.</label>
+      <label class="check-row"><input type="checkbox"> Răspunde agresiv la feedback.</label>
+      <label class="check-row"><input type="checkbox"> Nu are microfon funcțional.</label>
+      <label class="check-row"><input type="checkbox"> Favorizează prieteni sau mafii.</label>
+      <label class="check-row"><input type="checkbox"> Nu poate scrie o propoziție clară într-un raport simplu.</label>
+    </div>
+
+    <div class="field"><label>Decizie evaluator</label><select id="decisionSelect"><option value="">Alege</option><option>Acceptat</option><option>Acceptat condiționat</option><option>Respins temporar</option><option>Respins definitiv</option></select></div>
+    <div class="field"><label>Motiv decizie / observații finale</label><textarea id="finalNotes"></textarea></div>
+  </section>
+
+  <div class="total-panel"><div><div>Total evaluare</div><span class="small">Se calculează automat din punctajele introduse.</span></div><div><strong id="totalScore">0</strong> <span class="small">/ 100</span></div></div>
+</main>
+
+<footer>Pagina evaluatorului trebuie păstrată doar pentru conducerea PD / testeri.</footer>
+<script src="common.js"></script>
+<script src="evaluator.js"></script>
+</body>
+</html>

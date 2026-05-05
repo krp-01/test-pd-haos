@@ -1,0 +1,23 @@
+INSTRUCTIUNI - TEST ADMITERE PD HAOS ROMANIA
+
+Fisiere:
+- candidat.html = pagina care se trimite candidatului
+- evaluator.html = pagina doar pentru evaluator/tester
+- style.css, common.js, candidate.js, evaluator.js = fisiere necesare ca paginile sa functioneze
+
+Cum se foloseste:
+1. Extrage arhiva ZIP intr-un folder.
+2. Trimite candidatului DOAR fisierul candidat.html + fisierele necesare daca ruleaza local.
+   Recomandat: urci folderul pe un hosting si ii dai candidatului link doar catre candidat.html.
+3. Candidatul completeaza formularul si apasa „Trimite catre evaluator”.
+4. Se genereaza un link catre evaluator.html cu raspunsurile incluse.
+5. Candidatul poate doar sa copieze linkul si sa il trimita evaluatorului.
+6. Evaluatorul deschide linkul primit si vede raspunsurile + cheia de verificare.
+
+Limitari importante:
+- Aceasta este o varianta statica, fara backend si fara baza de date.
+- Linkul contine raspunsurile candidatului encodate in URL.
+- Pentru trimitere reala si sigura ai nevoie de backend, login pentru evaluator si baza de date.
+- Nu exista metoda 100% sigura sa impiedici screenshot, copiere, salvare pagina sau distribuire.
+- Am blocat printarea, Ctrl+P, Ctrl+S, Ctrl+U si click dreapta ca protectie de baza.
+- Candidatul NU trebuie sa primeasca evaluator.html, deoarece acolo se afla cheia de verificare.
