@@ -29,7 +29,7 @@ const labels = {
   ic_qualities:"Calități IC"
 };
 
-const quizKeys = {q1:"A", q2:"A", q3:"A", q4:"B", q5:"A", q6:"B", q7:"A", q8:"C"};
+const quizKeys = {q1:"B", q2:"B", q3:"A", q4:"B", q5:"A", q6:"B", q7:"B", q8:"B", q9:"B", q10:"B", q11:"B", q12:"A", q13:"B", q14:"B", q15:"B"};
 
 const behaviorLabels = {
   behavior_1:"Un suspect te insultă IC în timpul unei opriri. Ce faci?",
@@ -40,27 +40,27 @@ const behaviorLabels = {
 };
 
 const situationLabels = {
-  situation_1:"Oprire în trafic",
-  situation_2:"Suspect care fuge",
-  situation_3:"Prieten prins de tine",
-  situation_4:"Mafiot cunoscut te provoacă",
-  situation_5:"Coleg agresiv",
-  situation_6:"Suspect rănit / scenă medicală",
-  situation_7:"Ai greșit procedura",
+  situation_1:"Oprire complexă în trafic",
+  situation_2:"Urmărire cu risc",
+  situation_3:"Prieten implicat",
+  situation_4:"Conflict cu o mafie",
+  situation_5:"Coleg abuziv",
+  situation_6:"Scenă medicală",
+  situation_7:"Ordin discutabil",
   situation_8:"Ticket pe tine",
-  situation_9:"OOC în mijlocul RP-ului",
-  situation_10:"Ordin discutabil"
+  situation_9:"Radio haotic",
+  situation_10:"Decizie morală"
 };
 
 const decipherLabels = {
-  decipher_1:"Descifrare 1",
-  decipher_2:"Descifrare 2",
-  decipher_3:"Descifrare 3",
-  decipher_4:"Descifrare 4",
-  decipher_5:"Descifrare 5",
-  decipher_6:"Descifrare 6",
-  decipher_7:"Descifrare 7",
-  decipher_8:"Descifrare 8"
+  decipher_1:"Raport cronologic",
+  decipher_2:"Logică intervenție",
+  decipher_3:"Raport neutru",
+  decipher_4:"Escaladare proporțională",
+  decipher_5:"Ordine martori/vehicule",
+  decipher_6:"Control OOC",
+  decipher_7:"Meta gaming / justificare IC",
+  decipher_8:"Principiu de escaladare PD"
 };
 
 function esc(s){

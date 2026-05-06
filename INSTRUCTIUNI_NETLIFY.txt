@@ -1,0 +1,34 @@
+INSTRUCTIUNI PENTRU NETLIFY - VARIANTA CORECTATA
+
+Aceasta varianta este pregatita pentru Netlify.
+
+Fisiere importante:
+- index.html = pagina candidatului, se deschide direct cand intri pe site
+- evaluator.html = pagina evaluatorului
+- style.css, common.js, candidate.js, evaluator.js = necesare pentru functionare
+
+Cum o pui pe Netlify:
+1. Descarca ZIP-ul.
+2. Da Extract / Extrage tot.
+3. Intra in folderul extras.
+4. Selecteaza fisierele din interior:
+   - index.html
+   - evaluator.html
+   - style.css
+   - common.js
+   - candidate.js
+   - evaluator.js
+5. Pune-le intr-un ZIP nou SAU trage folderul complet in Netlify Drop.
+6. Dupa deploy, linkul principal de Netlify va deschide automat pagina candidatului.
+
+Ce trimiti candidatului:
+- Trimiti doar linkul principal, de exemplu:
+  https://nume-site.netlify.app
+
+Ce foloseste evaluatorul:
+- Candidatul completeaza testul, apasa „Trimite catre evaluator” si iti trimite linkul generat.
+- Tu deschizi acel link si vezi raspunsurile in evaluator.html.
+
+Daca nu merge:
+- Verifica sa nu fi incarcat un folder care contine inca un folder in interior.
+- Fisierele trebuie sa fie direct in radacina site-ului, adica index.html sa fie langa evaluator.html si style.css.
